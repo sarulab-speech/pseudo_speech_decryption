@@ -34,6 +34,8 @@ def get_mfcc(df):
 
 
 if __name__ == "__main__":
+    os.makedirs(paths["save_mfcc_path"], exist_ok = True)
+    
     ### read anonymized audio directory and output mfcc
     trial_list = pd.read_csv(protocol)
     print("DONE : reading trial list")
