@@ -60,6 +60,9 @@ utils/
 
 # 3. Script Usage
 
+0. Please install VoicePrivacy 2020 repository in order to use the datasets as well as ASV models and scripts to compute EER
+(https://github.com/Voice-Privacy-Challenge/Voice-Privacy-Challenge-2020)
+
 1. Prepare original and pseudonymized audio datasets where both datasets are structured as below
 
    root
