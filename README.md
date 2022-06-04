@@ -80,21 +80,35 @@ utils/
    Training accuracies and validation accuracies are written to log file and saved to train_log/
 
 
-3  For decrypting pseudonymized audio using signal-processing based methods.
-   Run test/decrypt_cas.py for decrypting audios pseudonymized using cascading method.
-   Decrypted audios saved in cas/
-   or
-   Run test/decrypt_sup.py for decrypting audios pseudonymized using superposition method.
-   Decrypted audios saved in sup/
-   In order to evaluate the worst case possible, we pseudoymize audio on all possible permutations and create each corresponding directories for saving audios.
+3. Decryption of signal processing-based methods
+3-1. Run test/decrypt_cas.py for decrypting audios pseudonymized using cascading method.
+     Decrypted audios saved in cas/
 
-4. Run audio2mfcc.py
-   This will allow us to extract MFCC from audios saved in cas/ or sup/
-   Note that you would need to specify directory in sup/ correctly so that the structure is the same as the one shown above.
-   
-5. For decrypting pseudonymized	audio using machine-learning based methods (UNet model)
-   Run test/eval.py
-   Model saved in save_model/ are read, scaler parameters in dev/scaler/ are loaded.
-   MFCC are extracted and saved to mfcc/
+     or	     
+
+     Run test/decrypt_sup.py for decrypting audios pseudonymized using superposition method.
+     Decrypted audios saved in sup/
+     In order to evaluate the worst case possible, we pseudoymize audio on all possible permutations and create each corresponding directories for saving audios.
+
+3-2. Run audio2mfcc.py
+     This will allow us to extract MFCC from audios saved in cas/ or sup/
+     Note that you would need to specify root directory in sup/ correctly so that the structure is the same as the one shown above.
+
+3-3. Configure test/make_files.sh to match your environment
+     mfcc_txt : MFCC file that was generated in 3-2
+     DIR : Input a directory name to store necessary files for computing EER. This will be created under Voice-Privacy-Challenge-2020/baseline/data .
+     Place the right paths for the remaining directories
+     The necessary files are created locally to which then is moved to directory DIR
 
 
+3-4. In Voice-Privacy-Challenge-2020/baseline/local/asv_eval.sh
+     Change script so it does not generate the mfcc file (vad.scp and x-vector files are to be generated) so the one generated in 3-2 is not overwritten
+     EER will be computed at this stage
+
+
+4. Decryption of machine learning-based methods
+4-1. Run test/eval.py
+     Model saved in save_model/ are read, scaler parameters in dev/scaler/ are loaded.
+     MFCC are extracted and saved to mfcc/
+
+4-2. Go to 3-3
